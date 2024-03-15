@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "yYVsiDrk23q/ZhPSM4WJuBRpTHK1xpiJolrL4ncpC5Sz09SgMWgXTHcgkrSexSb6aS28evJrvFQNEvgQ9qOY8Q==",
+  "dgSpecHash": "DG2lObotd3wivWEZ4Q7SwFWWO+IhPysdTuXVX0VFwouqHXJ55InmWKhbiXnuP5VqoVM+s7HbFADOFIKLL4JaOw==",
   "success": true,
   "projectFilePath": "/home/marcos/Área de Trabalho/OutrosMais/Estudos e Roadmaps/CSHARP/MinimalApis/ApiMinimal/ApiMinimal.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/marcos/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/marcos/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/marcos/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/home/marcos/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/home/marcos/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/home/marcos/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
