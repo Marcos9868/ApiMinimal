@@ -6,7 +6,11 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
-    
+
+app.UseSwagger();
+
 app.MapGet("/", () => "Hello World!");
+
+app.UseSwaggerUI();
 
 app.Run();

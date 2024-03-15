@@ -23,3 +23,11 @@
 /home/marcos/Área de Trabalho/OutrosMais/Estudos e Roadmaps/CSHARP/MinimalApis/ApiMinimal/obj/Debug/net8.0/ApiMinimal.pdb
 /home/marcos/Área de Trabalho/OutrosMais/Estudos e Roadmaps/CSHARP/MinimalApis/ApiMinimal/obj/Debug/net8.0/ApiMinimal.genruntimeconfig.cache
 /home/marcos/Área de Trabalho/OutrosMais/Estudos e Roadmaps/CSHARP/MinimalApis/ApiMinimal/obj/Debug/net8.0/ref/ApiMinimal.dll
+/home/marcos/Área de Trabalho/OutrosMais/Estudos e Roadmaps/CSHARP/MinimalApis/ApiMinimal/bin/Debug/net8.0/Microsoft.OpenApi.dll
+/home/marcos/Área de Trabalho/OutrosMais/Estudos e Roadmaps/CSHARP/MinimalApis/ApiMinimal/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
+/home/marcos/Área de Trabalho/OutrosMais/Estudos e Roadmaps/CSHARP/MinimalApis/ApiMinimal/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/home/marcos/Área de Trabalho/OutrosMais/Estudos e Roadmaps/CSHARP/MinimalApis/ApiMinimal/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/home/marcos/Área de Trabalho/OutrosMais/Estudos e Roadmaps/CSHARP/MinimalApis/ApiMinimal/obj/Debug/net8.0/ApiMinimal.csproj.AssemblyReference.cache
+/home/marcos/Área de Trabalho/OutrosMais/Estudos e Roadmaps/CSHARP/MinimalApis/ApiMinimal/obj/Debug/net8.0/ApiMinimal.MvcApplicationPartsAssemblyInfo.cs
+/home/marcos/Área de Trabalho/OutrosMais/Estudos e Roadmaps/CSHARP/MinimalApis/ApiMinimal/obj/Debug/net8.0/ApiMinimal.sourcelink.json
+/home/marcos/Área de Trabalho/OutrosMais/Estudos e Roadmaps/CSHARP/MinimalApis/ApiMinimal/obj/Debug/net8.0/ApiMinimal.csproj.CopyComplete
