@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ApiMinimal.Models
 {
     public class Product
@@ -9,5 +11,8 @@ namespace ApiMinimal.Models
         public string Image { get; set; } = string.Empty;
         public DateTime PurchaseDate { get; set; } = DateTime.Now;
         public int Storage { get; set; } = 0;
+        [ForeignKey("CategoryId")]
+        public int CategoryId { get; set; } = 0;
+        public Category? Category { get; set; }
     }
 }
