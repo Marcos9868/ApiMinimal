@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiMinimal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb454c00f0960e067388f6d0f27378a7e3432a61")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e74a601d5c846e3f79d0ec622d0989af09b2e7b3")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiMinimal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiMinimal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
