@@ -1,19 +1,90 @@
+using System.Text;
 using ApiMinimal.Context;
 using ApiMinimal.Models;
 using ApiMinimal.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => 
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiMinimal", Version = "1.0" });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme() 
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Bearer + 123abcdef"
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement 
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
 builder.Services.AddDbContext<DataContext>(options => 
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddSingleton<ITokenService>(new TokenService());
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options => 
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
+        };
+    });
+
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
+// Login
+app.MapPost("/login", [AllowAnonymous] (User user, ITokenService TokenService) => 
+{
+    if (user is null) return Results.BadRequest("Invalid Login");
+    if (
+        user.Username == "Marcos" &&
+        user.Password == "testeApi123"
+    )
+    {
+        var tokenString = TokenService.GenerateToken(
+            app.Configuration["Jwt:SecretKey"],
+            app.Configuration["Jwt:Issuer"],
+            app.Configuration["Jwt:Audience"],
+            user);
+        return Results.Ok(new { token = tokenString });
+    }
+    else
+    {
+        return Results.BadRequest("Invalid login");
+    }
+})
+.Produces(StatusCodes.Status200OK)
+.Produces(StatusCodes.Status400BadRequest)
+.WithName("Login")
+.WithTags("Auth");
 
 // Categories
 app.MapPost("/categories", async (Category category, DataContext context) => 
@@ -23,7 +94,8 @@ app.MapPost("/categories", async (Category category, DataContext context) =>
     return Results.Created($"/categories/{category.Id}", category);
 })
 .WithName("CreateCategory")
-.WithTags("Categories");
+.WithTags("Categories")
+.RequireAuthorization();
 
 app.MapGet("/categories", async (DataContext context) => 
     await context.Categories.ToListAsync())
@@ -160,11 +232,12 @@ app.MapDelete("/products/{id}", async (int id, DataContext context) =>
 .WithTags("Products");
 
 if (app.Environment.IsDevelopment())
-    app.UseDeveloperExceptionPage();
-
-app.UseSwagger();
-
-
-app.UseSwaggerUI();
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+    
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();
