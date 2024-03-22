@@ -14,11 +14,11 @@ namespace ApiMinimal.AppServicesExtensions
 {
     public static class ServiceCollectionExtensions
     {
-        // public static WebApplicationBuilder AddSwagger(this WebApplicationBuilder builder)
-        // {
-        //     builder.Services.AddSwagger();
-        //     return builder;
-        // }
+        public static WebApplicationBuilder AddSwagger(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddSwagger();
+            return builder;
+        }
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
             services.AddEndpointsApiExplorer();
