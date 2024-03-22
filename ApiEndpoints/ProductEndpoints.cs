@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ApiMinimal.Context;
 using ApiMinimal.Models;
 using Microsoft.EntityFrameworkCore;
@@ -20,13 +16,15 @@ namespace ApiMinimal.ApiEndpoints
             })
             .Produces<Product>(StatusCodes.Status201Created)
             .WithName("CreateProduct")
-            .WithTags("Products");
+            .WithTags("Products")
+            .RequireAuthorization();
 
             app.MapGet("/products", async (DataContext context) =>
                 await context.Products.ToListAsync())
                 .Produces<Product>(StatusCodes.Status200OK)
                 .WithName("ListProducts")
-                .WithTags("Products");
+                .WithTags("Products")
+                .RequireAuthorization();
 
             app.MapGet("/products/{id}", async (int id, DataContext context) =>
             {
@@ -37,7 +35,8 @@ namespace ApiMinimal.ApiEndpoints
             })
             .Produces<Product>(StatusCodes.Status200OK)
             .WithName("ListProduct")
-            .WithTags("Products");
+            .WithTags("Products")
+            .RequireAuthorization();
 
             app.MapGet("/products/name/{crit}", (string crit, DataContext context) =>
             {
@@ -50,7 +49,8 @@ namespace ApiMinimal.ApiEndpoints
                     : Results.NotFound(Array.Empty<Product>());
             })
             .WithName("ListProductByCrit")
-            .WithTags("Products");
+            .WithTags("Products")
+            .RequireAuthorization();
 
             app.MapGet("/productsPerPage", async (int pageNumber, int pageSize, DataContext context) =>
             {
@@ -61,7 +61,8 @@ namespace ApiMinimal.ApiEndpoints
             })
             .Produces<List<Product>>(StatusCodes.Status200OK)
             .WithName("ListProductsByPage")
-            .WithTags("Products");
+            .WithTags("Products")
+            .RequireAuthorization();
 
 
             app.MapPut("/products/{id:int}", async (int id, Product product, DataContext context) =>
@@ -77,7 +78,8 @@ namespace ApiMinimal.ApiEndpoints
             })
             .Produces<Product>(StatusCodes.Status200OK)
             .WithName("UpdateProduct")
-            .WithTags("Products");
+            .WithTags("Products")
+            .RequireAuthorization();
 
             app.MapDelete("/products/{id}", async (int id, DataContext context) =>
             {
@@ -91,7 +93,8 @@ namespace ApiMinimal.ApiEndpoints
             })
             .Produces<Product>(StatusCodes.Status200OK)
             .WithName("RemoveProduct")
-            .WithTags("Products");
+            .WithTags("Products")
+            .RequireAuthorization();
         }
     }
 }

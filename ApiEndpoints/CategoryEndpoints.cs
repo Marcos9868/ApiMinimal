@@ -25,7 +25,8 @@ namespace ApiMinimal.ApiEndpoints
             app.MapGet("/categories", async (DataContext context) =>
                 await context.Categories.ToListAsync())
                 .WithName("ListCategories")
-                .WithTags("Categories");
+                .WithTags("Categories")
+                .RequireAuthorization();
 
             app.MapGet("/categories/{id}", async (int id, DataContext context) =>
             {
@@ -35,7 +36,8 @@ namespace ApiMinimal.ApiEndpoints
                         : Results.NotFound();
             })
             .WithName("ListCategory")
-            .WithTags("Categories");
+            .WithTags("Categories")
+            .RequireAuthorization();
 
             app.MapPut("/categories/{id:int}", async (int id, Category category, DataContext context) =>
             {
@@ -49,7 +51,8 @@ namespace ApiMinimal.ApiEndpoints
                 return Results.Ok(categoryDb);
             })
             .WithName("UpdateCategory")
-            .WithTags("Categories");
+            .WithTags("Categories")
+            .RequireAuthorization();
 
             app.MapDelete("/categories/{id}", async (int id, DataContext context) =>
             {
@@ -62,7 +65,8 @@ namespace ApiMinimal.ApiEndpoints
                 return Results.Ok("Category removed sucessfully");
             })
             .WithName("RemoveCategory")
-            .WithTags("Categories");
+            .WithTags("Categories")
+            .RequireAuthorization();
 
             app.MapGet("/productCategory", async (DataContext context) =>
             {
@@ -72,7 +76,8 @@ namespace ApiMinimal.ApiEndpoints
             })
             .Produces<List<Category>>(StatusCodes.Status200OK)
             .WithName("ListProductsByCategory")
-            .WithTags("Categories");
+            .WithTags("Categories")
+            .RequireAuthorization();
         }
     }
 }
